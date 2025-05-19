@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        BODY {
+            background: white;
+        }
+        DIV {
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+
+        }
+        TABLE {
+            border-collapse: collapse;
+            border: 2px solid white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid maroon;
+            text-align: left;
+
+        }
+    </style>
+</head>
+<body>
+<div >
+    <p style="text-align: center"><b>USER DATABASE</b></p>
+    <table >
+
+        <tr>
+            <th style="text-align: center">User Id</th>
+            <th style="text-align: center">User name</th>
+            <th style="text-align: center">User mail</th>
+            <th style="text-align: center">Del</th>
+            <th style="text-align: center">Edit</th>
+        </tr>
+        <tr th:each ="user : ${users}">
+            <td style="text-align:center" th:utext="${user.getUserId()}">...</td>
+            <td th:utext="${user.getUserName()}">...</td>
+            <td th:utext="${user.getUserMail()}">...</td>
+            <td><button name="del" form="delForm" type="submit"  th:value="${user.getUserId()}">X</button></td>
+            <td><button name="updateId" form="editForm" type="submit"  th:value="${user.getUserId()}">Edit</button></td>
+        </tr>
+    </table>
+    <br>
+    <form method="POST" id="create" action="/" style="text-align: center;">
+        <p><b>Add new user</b></p>
+        <label for="user_name" style="display: inline-block; width: 70px">Name</label>
+        <input name="user_name" type="text" id="user_name">
+        <br>
+        <label for="mail" style="display: inline-block; width: 70px">Email</label>
+        <input name="mail" type="text" id="mail">
+        <br>
+        <input type="submit" value="Add user">
+
+    </form>
+
+    <form id="delForm" method="POST" action="/delete">
+    </form>
+
+    <form id="editForm" method="GET" action="/edit">
+    </form>
+
+
+</div>
+</body>
+</html>

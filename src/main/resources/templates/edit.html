@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+    <style type="text/css">
+        BODY {
+            background: white;
+        }
+        DIV {
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+
+        }
+        TABLE {
+            border-collapse: collapse;
+            border: 2px solid white;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid maroon;
+            text-align: left;
+
+        }
+    </style>
+</head>
+<body>
+<div >
+    <p style="text-align: center"><b>Edit User:</b></p>
+    <p style="text-align: center">User name:</p>
+    <p style="text-align:center" th:utext="${user.getUserName()}">...</p>
+    <p style="text-align: center">User mail:</p>
+    <p style="text-align:center" th:utext="${user.getUserMail()}">...</p>
+<br/>
+    <form th:method="POST" id="editForm" th:action="@{/edit}"  th:object="${user}" style="text-align: center;">
+        <input th:type="hidden" th:name="updateId"  th:value="*{userId}" type="text" id="updateId">
+        <br>
+        <label for="user_name"  style="display: inline-block; width: 70px">Name</label>
+        <input th:name="user_name" type="text" id="user_name">
+        <br>
+        <label for="mail" style="display: inline-block; width: 70px">Email</label>
+        <input th:name="mail"  type="text" id="mail">
+        <br>
+        <input type="submit" value="Update user">
+
+    </form>
+
+
+</div>
+</body>
+</html>
