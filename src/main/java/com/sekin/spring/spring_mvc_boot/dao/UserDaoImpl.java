@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -16,20 +16,17 @@ public class UserDaoImpl implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    @Transactional
     public void add(User user) {
        entityManager.persist(user);
     }
 
     @Override
-    @Transactional
     public void del(Long id) {
         User user = entityManager.find(User.class, id);
         entityManager.remove(user);
     }
 
     @Override
-    @Transactional
     public void update(Long id, String newName, String newMail) {
         User updUser = entityManager.find(User.class, id);
         if (!newName.isBlank()) {updUser.setUserName(newName);};
